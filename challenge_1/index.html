@@ -3,29 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="action">
+    <div id="stats">
+        <button type="button" id="reset">Reset</button>
+        <br><br><span id="player1"></span>&nbsp;| &nbsp;<span id="player2"></span><span id="total"></span>
+    </div>
+</div>
 
 <div class="container">
     <table id="table">
         <tr id="row1">
-            <td id = "cell1">1</td>
-            <td id = "cell2">1</td>
-            <td id = "cell3">1</td>
+            <td id="00"></td>
+            <td id="01"></td>
+            <td id="02"></td>
         </tr>
         <tr id="row2">
-            <td id = "cell4">1</td>
-            <td id = "cell5">1</td>
-            <td id = "cell6">1</td>
+            <td id="10"></td>
+            <td id="11"></td>
+            <td id="12"></td>
         </tr>
         <tr id="row3">
-            <td id = "cell7">1</td>
-            <td id = "cell8">1</td>
-            <td id = "cell9">1</td>
+            <td id="20"></td>
+            <td id="21"></td>
+            <td id="22"></td>
         </tr>
     </table>
-    <button type="button" id="reset">Reset</button>
 </div>
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>
