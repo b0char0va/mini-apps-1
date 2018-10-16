@@ -19,6 +19,7 @@ $(document).ready(function () {
     promptName.enterName();
 
     $("#reset").click(function () {
+        $("#table").removeClass("disable");
         $("td").empty();
         matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
         counter = 1;
@@ -68,11 +69,13 @@ var winMethods = {
             win = 1;
             statsObj.previousWinner = "X";
             statsObj.xWon++;
+            $("#table").addClass("disable");
             alert("Player X won!");
         } else if (matrix[0][0] === 1 && matrix [1][1] === 1 && matrix[2][2] === 1 && win === 0) {
             win = 1;
             statsObj.previousWinner = "O";
             statsObj.oWon++;
+            $("#table").addClass("disable");
             alert("Player O won!");
         }
     },
@@ -82,11 +85,13 @@ var winMethods = {
             win = 1;
             statsObj.previousWinner = "X";
             statsObj.xWon++;
+            $("#table").addClass("disable");
             alert("Player X won!");
         } else if (matrix[0][2] === 1 && matrix [1][1] === 1 && matrix[2][0] === 1 && win === 0) {
             win = 1;
             statsObj.previousWinner = "O";
             statsObj.oWon++;
+            $("#table").addClass("disable");
             alert("Player O won!");
         }
     },
@@ -109,16 +114,19 @@ var winMethods = {
                 win = 1;
                 statsObj.previousWinner = "X";
                 statsObj.xWon++;
+                $("#table").addClass("disable");
                 alert("player X won!!");
                 break;
             } else if (Ocount === 3 && win === 0) {
                 win = 1;
                 statsObj.previousWinner = "O";
                 statsObj.oWon++;
+                $("#table").addClass("disable");
                 alert("player O won!!");
                 break;
             } else if (placements === 9 && win === 0) {
                 statsObj.ties++;
+                $("#table").addClass("disable");
                 alert("It's a tie");
             }
             Xcount = 0;
@@ -144,12 +152,14 @@ var winMethods = {
                 win = 1;
                 statsObj.previousWinner = "X";
                 statsObj.xWon++;
+                $("#table").addClass("disable");
                 alert("player X won!!");
                 return;
             } else if (Ocount === 3 && win === 0) {
                 win = 1;
                 statsObj.previousWinner = "O";
                 statsObj.oWon++;
+                $("#table").addClass("disable");
                 alert("player O won!!");
                 return;
             }

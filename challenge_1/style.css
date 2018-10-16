@@ -51,3 +51,7 @@
     display: inline-block;
 }
 
+.disable{
+    pointer-events: none;
+}
+
