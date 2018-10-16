@@ -1,4 +1,4 @@
-var statsObj = {
+var statsObj = {                    //object to keep game scores
     gamesPlayed: 1,
     ties: 0,
     xWon: 0,
@@ -7,7 +7,7 @@ var statsObj = {
 };
 
 $(document).ready(function () {
-    var matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
+    var matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];        //matrix to keep track of players' moves
     var counter = 1;
     var win = 0;
     var firstMoveSymbol = "X";
@@ -16,9 +16,9 @@ $(document).ready(function () {
     var Val2 = 1;
     var degree = 90;
 
-    promptName.enterName();
+    promptName.enterName();                     //prompt to ask player names
 
-    $("#reset").click(function () {
+    $("#reset").click(function () {             //resets the game
         $("#table").removeClass("disable");
         $("td").empty();
         matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
@@ -41,7 +41,7 @@ $(document).ready(function () {
         $("#total").text("Games Played: " + statsObj.gamesPlayed);
     });
 
-    $("td").click(function (e) {
+    $("td").click(function (e) {                //inputs the symbol when player clicks on board cell
         var id = e.target.id;
         if (counter % 2 === 0 && matrix[id[0]][id[1]] === -1) {
             $(this).text(secondMoveSymbol);
@@ -62,8 +62,7 @@ $(document).ready(function () {
     });
 });
 
-
-var winMethods = {
+var winMethods = {                                      // object consisting of all methods to check if there are any wins or ties on the board
     checkLeftDiagonalWin: function (matrix, win) {
         if (matrix[0][0] === 0 && matrix [1][1] === 0 && matrix[2][2] === 0 && win === 0) {
             win = 1;
@@ -169,7 +168,7 @@ var winMethods = {
     }
 };
 
-var promptName = {
+var promptName = {                          // prompts to enter player names
     player1Name: "",
     player2Name: "",
 
