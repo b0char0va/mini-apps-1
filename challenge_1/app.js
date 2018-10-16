@@ -14,6 +14,7 @@ $(document).ready(function () {
     var secondMoveSymbol = "O";
     var Val1 = 0;
     var Val2 = 1;
+    var degree = 90;
 
     promptName.enterName();
 
@@ -21,6 +22,7 @@ $(document).ready(function () {
         $("td").empty();
         matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
         counter = 1;
+        degree = 90;
         if (statsObj.previousWinner === "O") {
             firstMoveSymbol = "O";
             Val1 = 1;
@@ -52,8 +54,10 @@ $(document).ready(function () {
         winMethods.checkColWin(matrix, win);
         winMethods.checkLeftDiagonalWin(matrix, win);
         winMethods.checkRightDiagonalWin(matrix, win);
-
-
+        $("#table").css("transform", 'rotate(-'+degree+'deg)');
+        if(degree < 360){
+            degree = degree*2;
+        }
     });
 });
 

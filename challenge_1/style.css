@@ -24,6 +24,9 @@
     text-align: center;
     font-size: 30px;
     font-weight: bold;
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+    transition: transform 1s;
 }
 
 #table td{
@@ -43,6 +46,8 @@
     color: white;
     font-size: 20px;
 }
+
 #stats{
     display: inline-block;
 }
+
