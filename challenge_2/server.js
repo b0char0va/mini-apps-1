@@ -15,32 +15,52 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
 app.post('/', (req, res) => {
-    // var str = '';
-    // req.setEncoding('utf8');
-    //
-    // req.on('data', function(chunk) {
-    //     str += chunk;
-    // });
-    //
-    // req.on('end', function() {
-    //     console.log(str);
-    //     res.end(json.stringify(str));
-    // });
-    //
-    //
-    var data = req.body;
-    // var fields = Object.keys(data);
-    // var replacer = function(key, value) { return value === null ? '' : value };
-    // var csv = fields.map(function(row){
-    //     return fields.map(function(fieldName){
-    //         return JSON.stringify(row[fieldName], replacer)
-    //     }).join(',')
-    // });
-    // csv.unshift(fields.join(',')); // add header column
-    //
-    // var finalcsv = csv.join('\r\n');
+    var data = [req.body];
 
-    res.writeHead(201, { 'Content-Type': 'application/octet-stream' });
-    res.end(JSON.stringify(data));
+    var flattened = start(data);
+    var filteredArray = removeChildrenProp(flattened);
+
+    var fields = Object.keys(filteredArray[0]);
+    var csv = filteredArray.map(function (row) {
+        return fields.map(function (fieldName) {
+            return (row[fieldName]);
+        }).join(',')
+    });
+    csv.unshift(fields.join(',')); // add header column
+    var finalcsv = csv.join('\r\n');
+
+    res.writeHead(201, {'Content-Type': 'application/octet-stream'});
+    res.end(finalcsv);
 });
 
+
+
+var start = function(arr) {
+    var data = JSON.parse(JSON.stringify(arr));
+    var array = [data[0]];
+
+
+    if (data[0].children && data[0].children.length > 0) {
+        var recurse = function (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                array.push(arr[i]);
+
+                if(arr[i].children.length > 0){
+                    recurse(arr[i].children);
+                }
+            }
+        };
+
+        recurse(data[0].children);
+        return array;
+    }
+};
+
+var removeChildrenProp = function (arr) {
+    var newArr = [];
+    for(var i = 0; i < arr.length; i++){
+       delete arr[i]['children'];
+       newArr.push(arr[i]);
+    }
+    return newArr;
+};
