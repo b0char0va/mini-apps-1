@@ -1,0 +1,14 @@
+#checkout {
+    width: 100px;
+    height: 40px;
+}
+
+.forms {
+    margin: 10px;
+    width: 300px;
+}
+
+label {
+    margin: 10px;
+    display:inline-block;
+}
