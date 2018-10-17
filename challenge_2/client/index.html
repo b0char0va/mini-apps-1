@@ -6,12 +6,22 @@
 </head>
 <body>
 <div>
-    <form>
-        <textarea rows="7" cols="50" id="text"> </textarea>
-        <input type="submit" value="Submit" id="submit">
+    <!--<form>-->
+        <!--<textarea rows="7" cols="50" id="text"> </textarea>-->
+        <!--<input type="submit" value="Submit" id="submit">-->
+    <!--</form>-->
+    <!--<form>-->
+    <!--<input type="file" id="file">-->
+    <!--</form>-->
+    <form id="fileinfo" enctype="multipart/form-data" method="post" name="fileinfo">
+        <label>File to stash:</label>
+        <input type="file" name="file" required />
     </form>
+    <input type="button" value="Stash the file!" id="submit">
+
     <div id="output"></div>
 </div>
+
 <script
         src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -20,5 +30,8 @@
 <script src="app.js"></script>
 </body>
 </html>
+
+
+
 
 
