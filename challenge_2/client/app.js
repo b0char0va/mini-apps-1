@@ -16,9 +16,12 @@ $(document).ready(function () {
         evt.preventDefault();
         var form = $('#fileinfo');
         var formData = new FormData(form[0]);
-        // console.log("hi");
-        // console.log(formData);
         serverRequests.create(formData);
+    });
+
+    $("#download").click(function(evt) {
+        evt.preventDefault();
+        serverRequests.fetch();
     });
 
 });
@@ -62,9 +65,19 @@ var serverRequests = {
                 console.log(response);
             }
         })
+    },
+
+    fetch: function() {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:3000',
+            dataType: "text/csv",
+            success: () => {
+                console.log("done");
+            }
+        })
     }
 };
-
 
 // [{"firstname": "mona", "lastname": "bocharova"}]
 
