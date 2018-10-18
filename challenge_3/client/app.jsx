@@ -92,6 +92,9 @@ class App extends React.Component {
         this.handleThirdSubmit = this.handleThirdSubmit.bind(this);
         this.handlePurchase = this.handlePurchase.bind(this);
         this.form = <Checkout clickHandler={this.handleClick}/>;
+        this.f1Inputs = {};
+        this.f2Inputs = {};
+        this.f3Inputs = {};
         this.inputs = {};
     }
 
@@ -101,9 +104,15 @@ class App extends React.Component {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
 
-        this.inputs['name'] = name;
-        this.inputs['email'] = email;
-        this.inputs['password'] = password;
+        this.f1Inputs['name'] = name;
+        this.f1Inputs['email'] = email;
+        this.f1Inputs['password'] = password;
+        this.f2Inputs['email'] = email;
+        this.f3Inputs['email'] = email;
+
+        this.inputs = Object.assign(this.inputs, this.f1Inputs);
+        serverMethods.create('http://localhost:3000/f1',this.f1Inputs);
+
 
         switch (this.state.viewForm2) {
             case false:
@@ -127,11 +136,15 @@ class App extends React.Component {
         var zipcode = document.getElementById('zipcode').value;
         var phonenumber = document.getElementById('phonenumber').value;
 
-        this.inputs['address'] = address;
-        this.inputs['city'] = city;
-        this.inputs['state'] = state;
-        this.inputs['zipcode'] = zipcode;
-        this.inputs['phone_number'] = phonenumber;
+        this.f2Inputs['address'] = address;
+        this.f2Inputs['city'] = city;
+        this.f2Inputs['state'] = state;
+        this.f2Inputs['zipcode'] = zipcode;
+        this.f2Inputs['phone_number'] = phonenumber;
+
+        serverMethods.create('http://localhost:3000/f2',this.f2Inputs);
+        delete this.f2Inputs['email'];
+        this.inputs = Object.assign(this.inputs, this.f2Inputs);
 
         switch (this.state.viewForm3) {
             case false:
@@ -155,11 +168,14 @@ class App extends React.Component {
         var cvv = document.getElementById('cvv').value;
         var billingzipcode = document.getElementById('billingzipcode').value;
 
-        this.inputs['credit_card'] = creditcard;
-        this.inputs['expiry_date'] = expirydate;
-        this.inputs['CVV'] = cvv;
-        this.inputs['billing_zip_code'] = billingzipcode;
-        serverMethods.create(JSON.stringify(this.inputs), this.setData);
+        this.f3Inputs['credit_card'] = creditcard;
+        this.f3Inputs['expiry_date'] = expirydate;
+        this.f3Inputs['CVV'] = cvv;
+        this.f3Inputs['billing_zip_code'] = billingzipcode;
+        serverMethods.create('http://localhost:3000/f3', this.f3Inputs);
+
+        delete this.f3Inputs['email'];
+        this.inputs = Object.assign(this.inputs, this.f3Inputs);
 
         switch (this.state.viewConfirmation) {
             case false:
@@ -233,11 +249,26 @@ ReactDOM.render(<App/>, document.getElementById('app'));
 
 var serverMethods = {
 
-    create: (obj) => {
+    // create: (obj) => {
+    //     $.ajax({
+    //         url: 'http://localhost:3000',
+    //         method: 'POST',
+    //         data: obj,
+    //         contentType: 'application/json',
+    //         success: (result) => {
+    //             console.log(result);
+    //         },
+    //         error: (err) => {
+    //             console.log(err);
+    //         }
+    //     });
+    // }
+
+    create: (url,obj) => {
         $.ajax({
-            url: 'http://localhost:3000',
+            url: url,
             method: 'POST',
-            data: obj,
+            data: JSON.stringify(obj),
             contentType: 'application/json',
             success: (result) => {
                 console.log(result);
