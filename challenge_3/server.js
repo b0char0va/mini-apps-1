@@ -48,5 +48,19 @@ app.post('/', (req, res) => {
 
 
 
+// CVV: "flhfo"
+// address: "jjfp[f"
+// billing_zip_code: "fnofho"
+// city: "fjgfjp"
+// credit_card: "fofh"
+// email: "alex@gmail.com"
+// expiry_date: "flnfl"
+// name: "alex"
+// password: "alexaaa"
+// phone_number: "fofol"
+// state: "jfofffho"
+// zipcode: "fofo"
+
+
 
 
