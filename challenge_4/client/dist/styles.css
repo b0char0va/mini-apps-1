@@ -1,0 +1,24 @@
+#table{
+    width: 700px;
+    height: 600px;
+}
+
+td{
+    border: 1px solid red;
+    width: 95px;
+    height: 95px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.disc1{
+    background-color: blue;
+}
+
+.disc2{
+    background-color: green;
+}
+
+.disable{
+    pointer-events: none;
+}
